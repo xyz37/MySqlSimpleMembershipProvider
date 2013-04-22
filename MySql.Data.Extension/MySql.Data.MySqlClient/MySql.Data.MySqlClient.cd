@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MySql.Data.MySqlClient.CreateMySqlDatabaseIfNotExists&lt;TContext&gt;">
+    <Position X="0.5" Y="3.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MySql.Data.MySqlClient\CreateMySqlDatabaseIfNotExists.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MySql.Data.MySqlClient.DropCreateMySqlDatabaseAlways&lt;TContext&gt;">
+    <Position X="4" Y="3.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MySql.Data.MySqlClient\DropCreateMySqlDatabaseAlways.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MySql.Data.MySqlClient.DropCreateMySqlDatabaseIfModelChanges&lt;TContext&gt;">
+    <Position X="7.5" Y="3.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MySql.Data.MySqlClient\DropCreateMySqlDatabaseIfModelChanges.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MySql.Data.MySqlClient.MySqlConnectionFactory">
+    <Position X="0.75" Y="5.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAABAIAAAEAAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>MySql.Data.MySqlClient\MySqlConnectionFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySql.Data.MySqlClient.MySqlDatabaseInitializer&lt;TContext&gt;">
+    <Position X="4.5" Y="1" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAACAAAAAAEAAAAAAAAAAAAAAAAAQAAAAAAg=</HashCode>
+      <FileName>MySql.Data.MySqlClient\MySqlDatabaseInitializer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MySql.Data.MySqlClient.MySqlDbContext">
+    <Position X="3" Y="5.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAACAAAA=</HashCode>
+      <FileName>MySql.Data.MySqlClient\MySqlDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,40 @@
+﻿@model SimpleMembershipTest.Models.ChangePropertyModel
+
+<h3>Change your properties.</h3>
+
+@using (Html.BeginForm("Manage", "Account"))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary()
+
+		<fieldset>
+		<legend>Set Password Form</legend>
+		<ol>
+			<li>
+				@Html.LabelFor(m => m.PropertyModel.Email)
+				@Html.TextBoxFor(m => m.PropertyModel.Email)
+			</li>
+			<li>
+				@Html.LabelFor(m => m.PropertyModel.Facebook)
+				@Html.TextBoxFor(m => m.PropertyModel.Facebook)
+			</li>
+			<li>
+				@Html.LabelFor(m => m.PropertyModel.Age)
+				@Html.TextBoxFor(m => m.PropertyModel.Age)
+			</li>
+			<li>
+				@Html.LabelFor(m => m.PropertyModel.Rate)
+				@Html.TextBoxFor(m => m.PropertyModel.Rate)
+			</li>
+			<li>
+				@Html.LabelFor(m => m.PropertyModel.LastName)
+				@Html.TextBoxFor(m => m.PropertyModel.LastName)
+			</li>
+			<li>
+				@Html.LabelFor(m => m.PropertyModel.FirstName)
+				@Html.TextBoxFor(m => m.PropertyModel.FirstName)
+			</li>
+		</ol>
+		<input type="submit" value="Change Properties" />
+	</fieldset>
+}
