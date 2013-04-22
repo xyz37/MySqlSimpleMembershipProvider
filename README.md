@@ -5,6 +5,9 @@ MySql SimpleMembership Provider for ASP.NET MVC 4
 with Entity Framework 5.x CodeFirst
 -----------------------------------
 
+# License
+
+Apache License 2.0
 
 # Libraries
 * MySql.Data.Extension : MySql Entity Framework Extension for Entity Framework Code First
@@ -170,3 +173,27 @@ public class SimpleMembershipTestDbContext : MySqlSecurityDbContext
 }
 ```
 
+# Sample Project result
+
+###### Add UserProperties
+
+* Email
+* Facebook
+* Age
+* Rate
+* LastName
+* FirstName
+
+###### Support External login
+
+![SimpleMembership Provider Test Page](https://raw.github.com/xyz37/MySqlSimpleMembershipProvider/master/_ScreenShot/SimpleMembershipProviderTest.png)
+
+
+# Special thanks
+
+* *Microsoft*, ASP.NET WebStack Source Code: http://aspnetwebstack.codeplex.com/
+* Use SimpleMembership and OAuth with mySQL and bigint or any database and datatype you want: http://fabiocanada.ca/2012/11/24/use-simplemembership-and-oauth-with-any-database-and-datatype/
+* Using Simple Membership Provider with mysql: http://stackoverflow.com/questions/12620922/using-simple-membership-provider-with-mysql
+* Using Entity Framework Code First with MySQL: http://brice-lambson.blogspot.kr/2012/05/using-entity-framework-code-first-with.html
+* Code First Migrations: Making __MigrationHistory not a system table: http://blog.oneunicorn.com/2012/02/27/code-first-migrations-making-__migrationhistory-not-a-system-table/
+* *Jerrie Pelser*, Customizing External Login Buttons in ASP.NET MVC 4: http://www.beabigrockstar.com/customizing-external-login-buttons-in-asp-net-mvc-4/
