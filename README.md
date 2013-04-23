@@ -20,10 +20,10 @@ Apache License 2.0
 
 ## MySql.Data.Extension Use only
 
-NuGet Package management 
+> Install package by NuGet Package management 
 
-  * Add Entity Framework 5.x above
-  * Add MySql.Net 6.6.4 above
+  * Entity Framework 5.x above
+  * MySql.Net 6.6.4 above
 
 ######  In app.config
 
@@ -69,32 +69,36 @@ public class SimpleMembershipTestDbContext : MySqlDbContext
 
 > mysql --user=root -p
 
-> grant all privileges on SimpleMembershipTest.* to 'dev'@'%' identified by 'thePassword' with grant option;
-
+> grant all privileges on SimpleMembershipTest.* to 'dev'@'%' identified by 'thePassword' with grant option;<br/>
 > -- grant all privileges on **&lt;Database name&gt;**.* to '**&lt;UserName&gt;**'@'%' identified by '**&lt;UserPassword&gt;**' with grant option;
 
 > flush privileges;
 
 > use mysql;
 
-> select host, user from user where user = 'dev';
-
+> -- verify results<br/>
+> select host, user from user where user = 'dev';<br/>
 > select host, user, db from db where user = 'dev';
 
 
 ## MySql.Web.Extension Use
 
-NuGet Package management 
+Step 1.
+> Install package by NuGet Package management 
 
-  * Add Entity Framework 5.x above
-  * Add MySql.Net 6.6.4 above
+  * Entity Framework 5.x above
+  * MySql.Net 6.6.4 above
   * Microsoft ASP.NET Razor 2
   * Microsoft ASP.NET Web Pages 2
   * Microsoft ASP.NET Web Pages 2 Data
   * Microsoft ASP.NET Web Pages 2 Web Data
   * Microsoft.Web.Infrastructure
 
-* Add MySql.Data.Extension project and grant privilege to user
+Step 2.
+> Reference MySql.Data.Extension project 
+
+Step 3.
+> [Grant privilege to user](https://github.com/xyz37/MySqlSimpleMembershipProvider#grant-privileges-to-user)
 
 ######  In web.config
 
@@ -104,6 +108,9 @@ NuGet Package management
 	<add key="mySqlSecurityInheritedContextType" value="SimpleMembershipTest.Dac.SimpleMembershipTestDbContext, SimpleMembershipTest.Dac" />
 </appSettings>
 ```
+* "mySqlSecurityInheritedContextType" is System.Type.Name and non argument public constructor need.
+<br/>
+see [SimpleMembershipTestDbContext.cs](https://github.com/xyz37/MySqlSimpleMembershipProvider/blob/master/SimpleMembershipTest.Dac/SimpleMembershipTestDbContext.cs)
 
 ```xml
 <connectionStrings>
@@ -173,7 +180,7 @@ public class SimpleMembershipTestDbContext : MySqlSecurityDbContext
 }
 ```
 
-# Sample Project result
+# Sample Project Screenshot
 
 ###### Add UserProperties
 
