@@ -84,7 +84,7 @@ namespace SimpleMembershipTest.Controllers
 				{
 					IDictionary<string, object> properties = new Dictionary<string, object>();
 
-					// NOTICE: To use this property columns. Add "MySql.Data.Ext" project partial "UserProfile" class and add property columns.
+					// NOTICE: To use this property columns. Add "MySql.Data.Extension" project partial "UserProfile" class and add property columns.
 					// by KIM-KIWON\xyz37(Kim Ki Won) in Thursday, April 18, 2013 5:02 PM
 					//properties.Add("Email", model.Email);
 					//properties.Add("Facebook", model.Facebook);
@@ -150,12 +150,16 @@ namespace SimpleMembershipTest.Controllers
 				}))
 				{
 					bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(MySqlWebSecurity.GetUserId(User.Identity.Name));
-					if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)
+					int externalLoginCount = OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count;
+
+					if (hasLocalAccount == true || externalLoginCount > 1)
 					{
 						OAuthWebSecurity.DeleteAccount(provider, providerUserId);
 						scope.Complete();
 						message = ManageMessageId.RemoveLoginSuccess;
 					}
+					else if (hasLocalAccount == false && externalLoginCount == 1)
+						message = ManageMessageId.RequestOneExternalLogin;
 				}
 			}
 
@@ -174,6 +178,7 @@ namespace SimpleMembershipTest.Controllers
 				message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
 				: message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
 				: message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+				: message == ManageMessageId.RequestOneExternalLogin ? "You must one external login or local account."
 				: "";
 			ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(MySqlWebSecurity.GetUserId(User.Identity.Name));
 			ViewBag.ReturnUrl = Url.Action("Manage");
@@ -476,6 +481,7 @@ namespace SimpleMembershipTest.Controllers
 			ChangePasswordSuccess,
 			SetPasswordSuccess,
 			RemoveLoginSuccess,
+			RequestOneExternalLogin,
 		}
 
 		internal class ExternalLoginResult : ActionResult

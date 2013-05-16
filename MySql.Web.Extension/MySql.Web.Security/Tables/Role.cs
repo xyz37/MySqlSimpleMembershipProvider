@@ -43,7 +43,6 @@ namespace MySql.Web.Security
 		/// </summary>
 		public Role()
 		{
-			Members = new List<Membership>();
 		}
 
 		/// <summary>
@@ -65,16 +64,6 @@ namespace MySql.Web.Security
 		[Column(TypeName = "nvarchar"), StringLength(256)]
 		[Display(Name = "Role_RoleName", ResourceType = typeof(MetadataResources))]
 		public string RoleName
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the members.
-		/// </summary>
-		/// <value>The members.</value>
-		public virtual ICollection<Membership> Members
 		{
 			get;
 			set;

@@ -76,11 +76,11 @@ namespace MySql.Web.Security
 		}
 
 		/// <summary>
-		/// Gets or sets the user.
+		/// Gets or sets the user profile.
 		/// </summary>
 		/// <value>The user.</value>
-		[Column("UserId"), InverseProperty("OAuthMemberships")]
-		public virtual Membership User
+		[ForeignKey("UserId")]
+		public virtual UserProfile UserProfile
 		{
 			get;
 			set;

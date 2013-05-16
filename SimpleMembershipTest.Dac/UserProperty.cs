@@ -11,21 +11,21 @@ namespace SimpleMembershipTest.Dac
 	/// <summary>
 	/// UserProperty
 	/// </summary>
-	public class UserProperty
+	public class UserProperty : UserProfile
 	{
-		[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int UserId
-		{
-			get;
-			set;
-		}
+		//[Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		//public int UserId
+		//{
+		//	get;
+		//	set;
+		//}
 
-		public string UserName
-		{
-			get;
-			set;
-		}
-
+		//public string UserName
+		//{
+		//	get;
+		//	set;
+		//}
+		
 		[DataType(DataType.EmailAddress)]
 		public string Email
 		{

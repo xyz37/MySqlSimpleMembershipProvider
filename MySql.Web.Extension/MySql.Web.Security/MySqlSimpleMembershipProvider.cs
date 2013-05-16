@@ -392,7 +392,7 @@ namespace MySql.Web.Security
 
 		internal static int GetUserId(MySqlSecurityDbContext db, string userName)
 		{
-			var result = db.UserProfiles.SingleOrDefault(x => x.UserName == userName);
+			var result = db.UserProfiles.FirstOrDefault(x => x.UserName == userName);
 
 			if (result != null)
 				return result.UserId;
@@ -610,7 +610,7 @@ namespace MySql.Web.Security
 			throw new NotSupportedException();
 		}
 
-		private void  CreateUserRow(MySqlSecurityDbContext db, string userName, IDictionary<string, object> values)
+		private void CreateUserRow(MySqlSecurityDbContext db, string userName, IDictionary<string, object> values)
 		{
 			var newUserProfile = new UserProfile
 			{

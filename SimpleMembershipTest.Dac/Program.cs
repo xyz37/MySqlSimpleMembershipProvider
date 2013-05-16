@@ -10,15 +10,28 @@ namespace SimpleMembershipTest.Dac
 	{
 		private static void Main()
 		{
-			var db = SimpleMembershipTestDbContext.CreateContext();
-			var count = db.UserProfiles.Count();
+			using (var db = SimpleMembershipTestDbContext.CreateContext())
+			{
+				
+				var count = db.UserProfiles.Count();
 
-			Console.WriteLine("user count: {0}", count);
+				Console.WriteLine("user count: {0}", count);
 
-			MySqlWebSecurity.InitializeDatabaseConnection("SimpleMembershipTestDbContext");
-			int userId = MySqlWebSecurity.GetUserId("test");
+				MySqlWebSecurity.InitializeDatabaseConnection("SimpleMembershipTestDbContext");
 
-			Console.WriteLine("user ID: {0}", userId);			
+				int userId = MySqlWebSecurity.GetUserId("admin");
+
+				Console.WriteLine("user ID: {0}", userId);
+
+				db.OAuthMemberships.Add(new OAuthMembership
+				{
+					Provider = "facebook",
+					ProviderUserId = "xyz37",
+					UserId = userId,
+				});
+
+				int ret = db.SaveChanges();
+			}
 		}
 	}
 }

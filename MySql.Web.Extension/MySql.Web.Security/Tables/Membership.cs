@@ -51,8 +51,6 @@ namespace MySql.Web.Security
 		/// </summary>
 		public Membership()
 		{
-			Roles = new List<Role>();
-			OAuthMemberships = new List<OAuthMembership>();
 		}
 
 		/// <summary>
@@ -193,27 +191,6 @@ namespace MySql.Web.Security
 		/// <value>The user profile.</value>
 		[ForeignKey("UserId")]
 		public virtual UserProfile UserProfile
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the roles.
-		/// </summary>
-		/// <value>The roles.</value>
-		public virtual ICollection<Role> Roles
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the O auth memberships.
-		/// </summary>
-		/// <value>The O auth memberships.</value>
-		[ForeignKey("UserId")]
-		public virtual ICollection<OAuthMembership> OAuthMemberships
 		{
 			get;
 			set;
