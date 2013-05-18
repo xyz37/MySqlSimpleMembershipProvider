@@ -619,31 +619,57 @@ namespace MySql.Web.Security
 
 			if (values != null && values.Count > 0)
 			{
-				var newUserProfileType = newUserProfile.GetType();
+				var type = Type.GetType(ConfigUtil.MySqlSecurityInheritedContextType, false, true);
+				var contextAssembly = Assembly.GetAssembly(type);
+				var userProfileExType = contextAssembly.GetTypes().FirstOrDefault(x => x.BaseType == typeof(MySql.Web.Security.UserProfile));
 
-				foreach (var key in values.Keys)
+				if (userProfileExType != null)
 				{
-					var pi = newUserProfileType.GetProperty(key);
+					object userProfileEx = Activator.CreateInstance(userProfileExType);
+					var userNamePi = userProfileEx.GetType().GetProperty("UserName");
 
-					if (pi != null)
+					userNamePi.SetValue(userProfileEx, userName);
+
+					foreach (var key in values.Keys)
 					{
-						object value = values[key];
+						var pi = userProfileExType.GetProperty(key);
 
-						if (value == null)
-							value = DBNull.Value;
+						if (pi != null)
+						{
+							object value = values[key];
 
-						pi.SetValue(newUserProfile, value);
+							if (value == null)
+								value = DBNull.Value;
+
+							pi.SetValue(userProfileEx, value);
+						}
 					}
+
+					var userProfileExDbSet = EntryBy(db, userProfileExType.FullName);	// get DbSet<UserProfile inherited class>
+					var addMethod = userProfileExDbSet.GetType().GetMethod("Add");		// get Add method info
+					addMethod.Invoke(userProfileExDbSet, new object[] { userProfileEx });		// invoke add UserProfile inherited class object
 				}
 			}
-
-			db.UserProfiles.Add(newUserProfile);
+			else
+				db.UserProfiles.Add(newUserProfile);
 
 			int rows = db.SaveChanges();
+
 			if (rows != 1)
 			{
 				throw new MembershipCreateUserException(MembershipCreateStatus.ProviderError);
 			}
+		}
+
+		private object EntryBy(System.Data.Entity.DbContext dbContext, string typeFullName)
+		{
+			Type contextType = dbContext.GetType();
+			Assembly assembly = Assembly.GetAssembly(contextType);
+			Type dacType = assembly.GetType(contextType.FullName);
+			var pi = dacType.GetProperties().Single(x => x.PropertyType.FullName.Contains(typeFullName));
+			var dbSet = pi.GetValue(dbContext, null);
+
+			return dbSet;
 		}
 
 		// Not used but CreateUser direct to database

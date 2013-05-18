@@ -387,7 +387,7 @@ namespace MySql.Web.Security
 		/// </summary>
 		/// <param name="userName">The user name.</param>
 		/// <param name="password">The password.</param>
-		/// <param name="propertyValues">(Optional) A dictionary that contains additional user attributes. The default is null.</param>
+		/// <param name="propertyValues">(Optional) A dictionary that contains additional user attributes. The default is null.(IDictionary&lt;string, object&gt;)</param>
 		/// <param name="requireConfirmationToken">(Optional) true to specify that the user account must be confirmed; otherwise, false. The default is false.</param>
 		/// <returns>A token that can be sent to the user to confirm the user account.</returns>
 		/// <exception cref="System.InvalidOperationException">
@@ -396,6 +396,7 @@ namespace MySql.Web.Security
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
+		/// <exception cref="System.ArgumentNullException">propertyValues not a IDictionary&lt;string, object&gt; type</exception>
 		[SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "This is a helper class, and we are not removing optional parameters from methods in helper classes")]
 		public static string CreateUserAndAccount(string userName, string password, object propertyValues = null, bool requireConfirmationToken = false)
 		{
