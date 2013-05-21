@@ -634,7 +634,7 @@ namespace MySql.Web.Security
 					{
 						var pi = userProfileExType.GetProperty(key);
 
-						if (pi != null)
+						if (pi != null && pi.CanWrite == true)
 						{
 							object value = values[key];
 

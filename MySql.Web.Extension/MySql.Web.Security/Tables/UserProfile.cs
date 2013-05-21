@@ -53,6 +53,7 @@ namespace MySql.Web.Security
 		/// </summary>
 		/// <value>The name of the user.</value>
 		[Display(Name = "UserProfile_UserName", ResourceType = typeof(MetadataResources))]
+		[Required]
 		public string UserName
 		{
 			get;
