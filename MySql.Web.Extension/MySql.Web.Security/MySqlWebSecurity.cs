@@ -258,8 +258,8 @@ namespace MySql.Web.Security
 		/// <param name="persistCookie">(Optional) true to specify that the authentication token in the cookie should be persisted beyond the current session; otherwise false. The default is false.</param>
 		/// <returns><c>true</c> if the user was logged in; otherwise, <c>false</c>.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -280,8 +280,8 @@ namespace MySql.Web.Security
 		/// Logs the user out.
 		/// </summary>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -300,8 +300,8 @@ namespace MySql.Web.Security
 		/// <param name="newPassword">The new password.</param>
 		/// <returns><c>true</c> if the password is successfully changed; otherwise, <c>false</c>.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -328,8 +328,8 @@ namespace MySql.Web.Security
 		/// <param name="accountConfirmationToken">A confirmation token to pass to the authentication provider.</param>
 		/// <returns><c>true</c> if the account is confirmed; otherwise, <c>false</c>.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -347,8 +347,8 @@ namespace MySql.Web.Security
 		/// <param name="accountConfirmationToken">A confirmation token to pass to the authentication provider.</param>
 		/// <returns><c>true</c> if the account is confirmed; otherwise, <c>false</c>.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -368,8 +368,8 @@ namespace MySql.Web.Security
 		/// <returns>A token that can be sent to the user to confirm the account.</returns>
 		/// <exception cref="System.Web.Security.MembershipCreateUserException">username is empty.-or-username already has a membership account.-or-password is empty.-or-password is too long.-or-The database operation failed.</exception>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -387,16 +387,15 @@ namespace MySql.Web.Security
 		/// </summary>
 		/// <param name="userName">The user name.</param>
 		/// <param name="password">The password.</param>
-		/// <param name="propertyValues">(Optional) A dictionary that contains additional user attributes. The default is null.(IDictionary&lt;string, object&gt;)</param>
+		/// <param name="propertyValues">(Optional) A dictionary that contains additional user attributes. The default is null.</param>
 		/// <param name="requireConfirmationToken">(Optional) true to specify that the user account must be confirmed; otherwise, false. The default is false.</param>
 		/// <returns>A token that can be sent to the user to confirm the user account.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
-		/// <exception cref="System.ArgumentNullException">propertyValues not a IDictionary&lt;string, object&gt; type</exception>
 		[SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "This is a helper class, and we are not removing optional parameters from methods in helper classes")]
 		public static string CreateUserAndAccount(string userName, string password, object propertyValues = null, bool requireConfirmationToken = false)
 		{
@@ -418,8 +417,8 @@ namespace MySql.Web.Security
 		/// <param name="tokenExpirationInMinutesFromNow">(Optional) The time in minutes until the password reset token expires. The default is 1440 (24 hours).</param>
 		/// <returns>A token to send to the user.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -438,8 +437,8 @@ namespace MySql.Web.Security
 		/// <param name="userName">Name of the user.</param>
 		/// <returns><c>true</c> if the username exists in the user profile table; otherwise, <c>false</c>.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -455,8 +454,8 @@ namespace MySql.Web.Security
 		/// <param name="userName">Name of the user.</param>
 		/// <returns>The user ID.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -479,8 +478,8 @@ namespace MySql.Web.Security
 		/// <param name="token">The password reset token.</param>
 		/// <returns>The user ID.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -498,8 +497,8 @@ namespace MySql.Web.Security
 		/// <param name="userName">The user name to compare the logged-in user name to.</param>
 		/// <returns><c>true</c> if the logged-in user name matches userName; otherwise, <c>false</c>.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -533,8 +532,8 @@ namespace MySql.Web.Security
 		/// If the user is not authenticated, sets the HTTP status to 401 (Unauthorized).
 		/// </summary>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -553,8 +552,8 @@ namespace MySql.Web.Security
 		/// </summary>
 		/// <param name="userId">The ID of the user to compare.</param>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -572,8 +571,8 @@ namespace MySql.Web.Security
 		/// </summary>
 		/// <param name="userName">The name of the user to compare.</param>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -591,8 +590,8 @@ namespace MySql.Web.Security
 		/// </summary>
 		/// <param name="roles">The roles to check. The current user must be in all of the roles that are passed in this parameter.</param>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -616,8 +615,8 @@ namespace MySql.Web.Security
 		/// <param name="newPassword">The new password.</param>
 		/// <returns><c>true</c> if XXXX, <c>false</c> otherwise</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -636,8 +635,8 @@ namespace MySql.Web.Security
 		/// <param name="intervalInSeconds">The number of seconds to lock a user account after the number of password attempts exceeds the value in the allowedPasswordAttempts parameter.</param>
 		/// <returns><c>true</c> if the membership account is locked; otherwise, <c>false</c>.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -655,8 +654,8 @@ namespace MySql.Web.Security
 		/// <param name="interval">The number of seconds to lock out a user account after the number of password attempts exceeds the value in the allowedPasswordAttempts parameter.</param>
 		/// <returns><c>true</c> if the membership account is locked; otherwise, <c>false</c>.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -681,8 +680,8 @@ namespace MySql.Web.Security
 		/// <param name="userName">The user name of the account.</param>
 		/// <returns>The count of failed password attempts for the specified account.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -700,8 +699,8 @@ namespace MySql.Web.Security
 		/// <param name="userName">The user name for the membership account.</param>
 		/// <returns>The date and time that the membership account was created, or <see cref="System.DateTime.MinValue"/> if the account creation date is not available.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -719,8 +718,8 @@ namespace MySql.Web.Security
 		/// <param name="userName">Name of the user.</param>
 		/// <returns>The date and time when the password was most recently changed, or <see cref="System.DateTime.MinValue"/> if the password has not been changed for this account.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>
@@ -738,8 +737,8 @@ namespace MySql.Web.Security
 		/// <param name="userName">The user name of the membership account.</param>
 		/// <returns>The date and time when an incorrect password was most recently entered for this account, or <see cref="System.DateTime.MinValue"/> if an incorrect password has not been entered for this account.</returns>
 		/// <exception cref="System.InvalidOperationException">
-		/// The <seealso cref="Initialize"/> method was not called.-or-
-		/// The <seealso cref="InitializeDatabaseConnection"/> method was not called.-or-
+		/// The <seealso cref="Initialized"/> method was not called.-or-
+		/// The <seealso cref="InitializeDatabaseConnection(string)"/> method was not called.-or-
 		/// The <seealso cref="MySqlSimpleMembershipProvider"/> membership provider is not registered in the configuration of your site. 
 		/// For more information, contact your site's system administrator.
 		/// </exception>

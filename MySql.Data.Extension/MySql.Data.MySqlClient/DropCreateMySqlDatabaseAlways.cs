@@ -29,7 +29,7 @@ namespace MySql.Data.MySqlClient
 {
 	/// <summary>
 	/// An implementation of IDatabaseInitializer&lt;TContext&gt; that will recreate and optionally re-seed the database with data only if the database does not exist. 
-	/// To seed the database, create a derived class and override the <seealso cref="MySql.Data.MySqlClient.MySqlDatabaseInitializer.Seed"/> method.
+	/// To seed the database, create a derived class and override the <seealso cref="MySql.Data.MySqlClient.MySqlDatabaseInitializer&lt;TContext&gt;.Seed"/> method.
 	/// </summary>
 	/// <typeparam name="TContext">The type of the T context.</typeparam>
 	public class DropCreateMySqlDatabaseAlways<TContext> : MySqlDatabaseInitializer<TContext>
