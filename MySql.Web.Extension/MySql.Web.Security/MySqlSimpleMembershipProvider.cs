@@ -7,9 +7,9 @@
 /*	Purpose		:	Provides support for website membership tasks, such as creating accounts, deleting accounts, 
  *					and managing passwords for MySql database.
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*	Modifier	:	
-/*	Update		:	
-/*	Changes		:	
+/*	Modifier	:	Phoenix
+/*	Update		:	2013-10-31
+/*	Changes		:	GeneratePasswordResetToken
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*	Comment		:	
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -1275,11 +1275,17 @@ namespace MySql.Web.Security
 			using (var db = NewMySqlSecurityDbContext)
 			{
 				int userId = VerifyUserNameHasConfirmedAccount(db, userName, throwException: true);
-				var membership = db.Memberships.SingleOrDefault(x => x.UserId == userId && x.PasswordVerificationTokenExpirationDate > DateTime.Now);
+				//Modify By Phoenix 2013-10-31 
+				//fix bug, GeneratePasswordResetToken always return Empty.
+				//remove "&& x.PasswordVerificationTokenExpirationDate > DateTime.Now"
+				var membership = db.Memberships.SingleOrDefault(x => x.UserId == userId);
 
 				if (membership != null)
 				{
-					string token = membership.PasswordVerificationToken;
+					//Modify By Phoenix 2013-10-31
+					//fix bugs, if token expiration, generate new token
+					string token = (membership.PasswordVerificationTokenExpirationDate.HasValue && 
+							membership.PasswordVerificationTokenExpirationDate.Value > DateTime.Now) ? membership.PasswordVerificationToken : String.Empty;
 					if (token.IsEmpty())
 					{
 						token = GenerateToken();
