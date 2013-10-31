@@ -7,9 +7,9 @@
 /*	Purpose		:	Provides security and authentication features for ASP.NET Web Pages applications with MySql, including the ability to create user accounts, 
  *					log users in and out, reset or change passwords, and perform related tasks.
 /*--------------------------------------------------------------------------------------------------------------------*/
-/*	Modifier	:	
-/*	Update		:	
-/*	Changes		:	
+/*	Modifier	:	Phoenix
+/*	Update		:	2013-10-31
+/*	Changes		:	Add account locked out check when login
 /*--------------------------------------------------------------------------------------------------------------------*/
 /*	Comment		:	
 /*--------------------------------------------------------------------------------------------------------------------*/
@@ -268,6 +268,10 @@ namespace MySql.Web.Security
 		public static bool Login(string userName, string password, bool persistCookie = false)
 		{
 			MySqlSimpleMembershipProvider provider = VerifyProvider();
+			// Add By Phoenix 2013-10-31
+			// Check is account locked out
+			if (IsAccountLockedOut(userName, provider.PasswordAttemptWindow, provider.MaxInvalidPasswordAttempts))
+				return false;
 			bool success = provider.ValidateUser(userName, password);
 			if (success)
 			{
