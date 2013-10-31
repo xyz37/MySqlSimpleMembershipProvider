@@ -1275,7 +1275,10 @@ namespace MySql.Web.Security
 			using (var db = NewMySqlSecurityDbContext)
 			{
 				int userId = VerifyUserNameHasConfirmedAccount(db, userName, throwException: true);
-				var membership = db.Memberships.SingleOrDefault(x => x.UserId == userId && x.PasswordVerificationTokenExpirationDate > DateTime.Now);
+				//Modify By Phoenix 2013-10-31 
+				//fix bug, GeneratePasswordResetToken always return Empty.
+				//remove "&& x.PasswordVerificationTokenExpirationDate > DateTime.Now"
+				var membership = db.Memberships.SingleOrDefault(x => x.UserId == userId);
 
 				if (membership != null)
 				{
