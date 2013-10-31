@@ -1283,9 +1283,9 @@ namespace MySql.Web.Security
 				if (membership != null)
 				{
 					//Modify By Phoenix 2013-10-31
-                    			//fix bugs, if token expiration, generate new token
-                    			string token = (membership.PasswordVerificationTokenExpirationDate.HasValue && 
-                                    			membership.PasswordVerificationTokenExpirationDate.Value > DateTime.Now) ? membership.PasswordVerificationToken : String.Empty;
+					//fix bugs, if token expiration, generate new token
+					string token = (membership.PasswordVerificationTokenExpirationDate.HasValue && 
+							membership.PasswordVerificationTokenExpirationDate.Value > DateTime.Now) ? membership.PasswordVerificationToken : String.Empty;
 					if (token.IsEmpty())
 					{
 						token = GenerateToken();
